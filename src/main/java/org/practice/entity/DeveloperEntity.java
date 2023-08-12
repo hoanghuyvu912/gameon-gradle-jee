@@ -1,8 +1,13 @@
 package org.practice.entity;
+
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -32,4 +37,7 @@ public class DeveloperEntity {
 
     @Column(name = "established_date")
     private LocalDate establishedDate;
+
+    @OneToMany(mappedBy = "developer", cascade = CascadeType.PERSIST)
+    private List<GameEntity> gameEntityList;
 }

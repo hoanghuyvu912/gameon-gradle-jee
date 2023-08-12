@@ -3,6 +3,7 @@ package org.practice.service.model;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,5 +22,7 @@ public class Developer {
     private String description;
 
     private LocalDate establishedDate;
+
+    private List<Game> gameList;
 }
 

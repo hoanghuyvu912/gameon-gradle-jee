@@ -1,10 +1,8 @@
 package org.practice.service;
 
 import org.practice.dao.DeveloperDAO;
-import org.practice.dao.impl.DeveloperDAOImpl;
 import org.practice.entity.DeveloperEntity;
 import org.practice.service.mapper.DeveloperMapper;
-import org.practice.service.model.Developer;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,7 +17,7 @@ public class DeveloperService {
     private DeveloperMapper developerMapper;
 
     public List<DeveloperEntity> getAll() {
-            return developerDAO.getAll();
+            return developerDAO.findAll();
 //        return developerMapper.toDTOList(developerDAO.getAll());
     }
 }
