@@ -23,9 +23,8 @@ public class ReceiptDetailsEntity {
 
     @OneToOne
     @JoinColumn(name = "game_code_id")
-    private GameCodeEntity gameCodeEntity;
+    private GameCodeEntity gameCode;
 
     @Column(name="game_price", columnDefinition="Decimal(4,2)")
     private Double gamePrice;
-
 }

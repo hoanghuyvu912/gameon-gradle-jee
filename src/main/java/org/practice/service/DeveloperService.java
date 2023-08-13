@@ -18,7 +18,6 @@ public class DeveloperService {
     private DeveloperMapper developerMapper;
 
     public List<Developer> getAll() {
-//            return developerDAO.findAll();
         return developerMapper.toDTOList(developerDAO.findAll());
     }
 }

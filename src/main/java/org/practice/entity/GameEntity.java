@@ -3,6 +3,8 @@ package org.practice.entity;
 //import jakarta.persistence.*;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -51,14 +53,16 @@ public class GameEntity {
     @JoinColumn(name = "publisher_id")
     private PublisherEntity publisher;
 
-//    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
-//    private List<CommentEntity> commentEntityList = new ArrayList<>();
-//
-//    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
-//    private List<RatingEntity> ratingEntityList = new ArrayList<>();
-//
-//    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
-//    private List<GameImageEntity> gameImageEntityList = new ArrayList<>();
+    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<CommentEntity> commentEntityList;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<RatingEntity> ratingEntityList = new ArrayList<>();
+
+    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
+    private List<GameImageEntity> gameImageEntityList = new ArrayList<>();
 //
 //    @OneToMany(orphanRemoval = true, mappedBy = "game", cascade = CascadeType.PERSIST)
 //    private List<GameSubGenreEntity> gameSubGenreEntityList = new ArrayList<>();

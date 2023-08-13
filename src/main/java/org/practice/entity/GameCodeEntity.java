@@ -26,5 +26,5 @@ public class GameCodeEntity {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private GameCodeStatusEntity gameCodeStatusEntity;
+    private GameCodeStatus gameCodeStatus;
 }

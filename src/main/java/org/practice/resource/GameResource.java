@@ -1,6 +1,7 @@
 package org.practice.resource;
 
 import org.practice.service.DeveloperService;
+import org.practice.service.GameService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -13,10 +14,10 @@ import javax.ws.rs.core.Response;
 @Produces({MediaType.APPLICATION_JSON})
 public class GameResource {
     @Inject
-    private DeveloperService developerService;
+    private GameService gameService;
 
     @GET
     public Response getAll() {
-        return Response.ok(developerService.getAll()).build();
+        return Response.ok(gameService.getAll()).build();
     }
 }

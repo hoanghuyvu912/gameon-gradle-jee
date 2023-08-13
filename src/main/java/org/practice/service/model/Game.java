@@ -1,10 +1,7 @@
 package org.practice.service.model;
 
 import lombok.*;
-import org.practice.entity.DeveloperEntity;
-import org.practice.entity.PublisherEntity;
 
-import javax.xml.stream.events.Comment;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,5 +31,7 @@ public class Game {
 
     private Integer publisherId;
 
-    private List<Comment> comments;
+    private List<Comment> commentList;
+    private List<Rating> ratingList;
+    private List<GameImage> gameImageList;
 }

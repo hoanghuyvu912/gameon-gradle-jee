@@ -24,5 +24,5 @@ public class SubGenreEntity {
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
-    private GenreEntity genreEntity;
+    private GenreEntity genre;
 }

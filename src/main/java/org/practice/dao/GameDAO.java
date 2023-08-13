@@ -13,6 +13,9 @@ public class GameDAO {
     EntityManager em;
 
     public List<GameEntity> findAll() {
-        return em.createQuery("SELECT DISTINCT g FROM GameEntity g ORDER BY g.id, g.name", GameEntity.class).getResultList();
+        return em.createQuery("SELECT DISTINCT g FROM GameEntity g " +
+                "LEFT JOIN FETCH g.commentEntityList c " +
+//                "LEFT JOIN FETCH g.ratingEntityList r " +
+                "ORDER BY g.id, g.name", GameEntity.class).getResultList();
     }
 }

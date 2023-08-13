@@ -4,18 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import org.practice.entity.DeveloperEntity;
 import org.practice.entity.GameEntity;
+import org.practice.entity.GameImageEntity;
 import org.practice.entity.PublisherEntity;
 import org.practice.service.model.Game;
+import org.practice.service.model.GameImage;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-13T11:18:44+0700",
+    date = "2023-08-14T00:48:17+0700",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
 public class GameMapperImpl implements GameMapper {
+
+    @Inject
+    private CommentMapper commentMapper;
+    @Inject
+    private RatingMapper ratingMapper;
 
     @Override
     public List<Game> toDTOList(List<GameEntity> entityList) {
@@ -41,6 +49,9 @@ public class GameMapperImpl implements GameMapper {
 
         game.developerId( gameEntityDeveloperId( gameEntity ) );
         game.publisherId( gameEntityPublisherId( gameEntity ) );
+        game.commentList( commentMapper.toDTOList( gameEntity.getCommentEntityList() ) );
+        game.ratingList( ratingMapper.toDTOList( gameEntity.getRatingEntityList() ) );
+        game.gameImageList( gameImageEntityListToGameImageList( gameEntity.getGameImageEntityList() ) );
         game.id( gameEntity.getId() );
         game.name( gameEntity.getName() );
         game.thumbnail( gameEntity.getThumbnail() );
@@ -81,5 +92,31 @@ public class GameMapperImpl implements GameMapper {
             return null;
         }
         return id;
+    }
+
+    protected GameImage gameImageEntityToGameImage(GameImageEntity gameImageEntity) {
+        if ( gameImageEntity == null ) {
+            return null;
+        }
+
+        GameImage.GameImageBuilder gameImage = GameImage.builder();
+
+        gameImage.id( gameImageEntity.getId() );
+        gameImage.imageLink( gameImageEntity.getImageLink() );
+
+        return gameImage.build();
+    }
+
+    protected List<GameImage> gameImageEntityListToGameImageList(List<GameImageEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<GameImage> list1 = new ArrayList<GameImage>( list.size() );
+        for ( GameImageEntity gameImageEntity : list ) {
+            list1.add( gameImageEntityToGameImage( gameImageEntity ) );
+        }
+
+        return list1;
     }
 }

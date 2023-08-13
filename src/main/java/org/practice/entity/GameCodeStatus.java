@@ -1,5 +1,5 @@
 package org.practice.entity;
 
-public enum GameCodeStatusEntity {
+public enum GameCodeStatus {
     Available, Used
 }
