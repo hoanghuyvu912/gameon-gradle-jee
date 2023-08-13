@@ -38,5 +38,5 @@ public class PublisherEntity {
     private LocalDate establishedDate;
 
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.PERSIST)
-    private List<GameEntity> gameEntity = new ArrayList<>();
+    private List<GameEntity> gameEntityList = new ArrayList<>();
 }

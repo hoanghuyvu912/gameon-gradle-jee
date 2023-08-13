@@ -39,5 +39,7 @@ public class DeveloperEntity {
     private LocalDate establishedDate;
 
     @OneToMany(mappedBy = "developer", cascade = CascadeType.PERSIST)
+    @Fetch(FetchMode.SUBSELECT)
+    @OrderBy("id, name, releasedDate")
     private List<GameEntity> gameEntityList;
 }

@@ -4,36 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
+import org.practice.entity.DeveloperEntity;
 import org.practice.entity.GameEntity;
+import org.practice.entity.PublisherEntity;
 import org.practice.service.model.Game;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-12T18:14:41+0700",
+    date = "2023-08-13T11:18:44+0700",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
 public class GameMapperImpl implements GameMapper {
-
-    @Override
-    public Game toDTO(GameEntity entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        Game.GameBuilder game = Game.builder();
-
-        game.id( entity.getId() );
-        game.name( entity.getName() );
-        game.thumbnail( entity.getThumbnail() );
-        game.description( entity.getDescription() );
-        game.trailer( entity.getTrailer() );
-        game.releasedDate( entity.getReleasedDate() );
-        game.systemReq( entity.getSystemReq() );
-        game.price( entity.getPrice() );
-
-        return game.build();
-    }
 
     @Override
     public List<Game> toDTOList(List<GameEntity> entityList) {
@@ -47,5 +29,57 @@ public class GameMapperImpl implements GameMapper {
         }
 
         return list;
+    }
+
+    @Override
+    public Game toDTO(GameEntity gameEntity) {
+        if ( gameEntity == null ) {
+            return null;
+        }
+
+        Game.GameBuilder game = Game.builder();
+
+        game.developerId( gameEntityDeveloperId( gameEntity ) );
+        game.publisherId( gameEntityPublisherId( gameEntity ) );
+        game.id( gameEntity.getId() );
+        game.name( gameEntity.getName() );
+        game.thumbnail( gameEntity.getThumbnail() );
+        game.description( gameEntity.getDescription() );
+        game.trailer( gameEntity.getTrailer() );
+        game.releasedDate( gameEntity.getReleasedDate() );
+        game.systemReq( gameEntity.getSystemReq() );
+        game.price( gameEntity.getPrice() );
+
+        return game.build();
+    }
+
+    private Integer gameEntityDeveloperId(GameEntity gameEntity) {
+        if ( gameEntity == null ) {
+            return null;
+        }
+        DeveloperEntity developer = gameEntity.getDeveloper();
+        if ( developer == null ) {
+            return null;
+        }
+        Integer id = developer.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    private Integer gameEntityPublisherId(GameEntity gameEntity) {
+        if ( gameEntity == null ) {
+            return null;
+        }
+        PublisherEntity publisher = gameEntity.getPublisher();
+        if ( publisher == null ) {
+            return null;
+        }
+        Integer id = publisher.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

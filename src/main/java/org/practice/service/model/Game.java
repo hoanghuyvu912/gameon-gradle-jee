@@ -4,7 +4,9 @@ import lombok.*;
 import org.practice.entity.DeveloperEntity;
 import org.practice.entity.PublisherEntity;
 
+import javax.xml.stream.events.Comment;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +33,6 @@ public class Game {
     private Integer developerId;
 
     private Integer publisherId;
+
+    private List<Comment> comments;
 }

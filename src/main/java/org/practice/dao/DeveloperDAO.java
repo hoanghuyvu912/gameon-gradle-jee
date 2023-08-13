@@ -13,9 +13,7 @@ public class DeveloperDAO {
     EntityManager em;
 
     public List<DeveloperEntity> findAll() {
-        return em.createQuery("SELECT d FROM DeveloperEntity d LEFT JOIN FETCH d.gameEntityList g LEFT JOIN FETCH g.publisher p", DeveloperEntity.class).
-//        return em.createQuery("SELECT d FROM DeveloperEntity d", DeveloperEntity.class).
-
+        return em.createQuery("SELECT DISTINCT d FROM DeveloperEntity d LEFT JOIN FETCH d.gameEntityList g LEFT JOIN FETCH g.publisher p ORDER BY d.id, d.name", DeveloperEntity.class).
                 getResultList();
     }
 }
