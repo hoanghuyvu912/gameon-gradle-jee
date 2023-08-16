@@ -1,8 +1,11 @@
 package org.practice.entity;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +38,12 @@ public class UserEntity {
     @Column(name = "username", length = 500)
     private String username;
 
-    @Column(name = "user_password", length = 1000)
+    @Column(name = "user_password", nullable = false)
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-zA-Z]).{6,}$")
     private String password;
 
-    @Column(name = "email", length = 1000)
+    @Column(name = "email", unique = true, nullable = false)
+    @Email
     private String email;
 
     @Column(name = "telephone_num")
@@ -60,6 +65,7 @@ public class UserEntity {
     private Double balance;
 
     @Column(name = "registered_date")
+    @CreationTimestamp
     private LocalDate registeredDate;
 
     @Column(name = "active")

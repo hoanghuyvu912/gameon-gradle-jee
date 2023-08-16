@@ -5,6 +5,7 @@ package org.practice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -20,5 +21,6 @@ public class GenreEntity {
     private Integer id;
 
     @Column(name = "genre_name", length = 500)
+    @NotNull(message = "Genre name cannot be null or blank.")
     private String name;
 }
