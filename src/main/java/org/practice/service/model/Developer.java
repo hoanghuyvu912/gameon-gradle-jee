@@ -7,15 +7,13 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
 
-import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.json.bind.config.PropertyOrderStrategy;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.practice.security.ErrorMessage.DEVELOPER_NAME_LENGTH_CONSTRAINT;
-import static org.practice.security.ErrorMessage.DEVELOPER_NAME_NULL_OR_BLANK;
+import static org.practice.exception.ErrorMessage.DEVELOPER_NAME_LENGTH_CONSTRAINT;
+import static org.practice.exception.ErrorMessage.DEVELOPER_NAME_NULL_OR_BLANK;
 
 @Getter
 @Setter

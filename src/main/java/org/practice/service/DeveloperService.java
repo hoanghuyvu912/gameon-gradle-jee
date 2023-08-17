@@ -3,8 +3,8 @@ package org.practice.service;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 import org.practice.dao.DeveloperDAO;
 import org.practice.entity.DeveloperEntity;
-import org.practice.security.ErrorMessage;
-import org.practice.security.ResourceNotFoundException;
+import org.practice.exception.ErrorMessage;
+import org.practice.exception.ResourceNotFoundException;
 import org.practice.service.mapper.DeveloperMapper;
 import org.practice.service.model.Developer;
 

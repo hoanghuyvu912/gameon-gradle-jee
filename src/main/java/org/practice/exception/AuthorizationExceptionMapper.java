@@ -1,4 +1,4 @@
-package org.practice.security;
+package org.practice.exception;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,15 +9,17 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class GameOnExceptionMapper implements ExceptionMapper<GameOnException> {
-    private static final Logger logger = LogManager.getLogger(GameOnExceptionMapper.class);
+public class AuthorizationExceptionMapper implements ExceptionMapper<AuthorizationException> {
+    private static final Logger logger = LogManager.getLogger(AuthorizationExceptionMapper.class);
 
     @Override
-    public Response toResponse(GameOnException e) {
+    public Response toResponse(AuthorizationException e) {
         StackTraceElement[] stackTraceArray = e.getStackTrace();
-        for (StackTraceElement s : stackTraceArray) {
-            logger.error(s.getClassName());
-        }
+        String logMessage = String.format("%s:%d - %s",
+                stackTraceArray[0].getClassName(),
+                stackTraceArray[0].getLineNumber(),
+                e.getResponseBody().getErrorMessage());
+        logger.info(logMessage);
         ResponseBody responseBody = e.getResponseBody();
 
         return Response.status(responseBody.getStatusCode())

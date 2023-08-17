@@ -1,4 +1,4 @@
-package org.practice.security;
+package org.practice.exception;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,12 +8,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+
 @Provider
-public class ResourceNotFoundExceptionMapper implements ExceptionMapper<ResourceNotFoundException> {
-    private static final Logger logger = LogManager.getLogger(ResourceNotFoundExceptionMapper.class);
+public class InputValidationExceptionMapper implements ExceptionMapper<InputValidationException> {
+
+    private static final Logger logger = LogManager.getLogger(InputValidationExceptionMapper.class);
 
     @Override
-    public Response toResponse(ResourceNotFoundException e) {
+    public Response toResponse(InputValidationException e) {
         StackTraceElement[] stackTraceArray = e.getStackTrace();
         String logMessage = String.format("%s:%d - %s",
                 stackTraceArray[0].getClassName(),
@@ -26,5 +28,6 @@ public class ResourceNotFoundExceptionMapper implements ExceptionMapper<Resource
                 .entity(responseBody)
                 .type(MediaType.APPLICATION_JSON)
                 .build();
+
     }
 }

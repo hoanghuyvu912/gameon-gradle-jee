@@ -1,4 +1,4 @@
-package org.practice.security;
+package org.practice.exception;
 
 import lombok.Getter;
 
