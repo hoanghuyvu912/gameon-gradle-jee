@@ -7,6 +7,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +27,14 @@ public class GameEntity {
     private Integer id;
 
     @Column(name = "game_name", length = 2000)
+    @NotBlank
     private String name;
 
     @Column(name = "thumbnail", length = 2000)
     private String thumbnail;
 
     @Column(name = "description", length = 3000)
+    @Size(max = 3000)
     private String description;
 
     @Column(name = "trailer", length = 3000)
@@ -40,6 +44,7 @@ public class GameEntity {
     private LocalDate releasedDate;
 
     @Column(name = "system_req", length = 5000)
+    @Size(max = 5000)
     private String systemReq;
 
     @Column(name = "price", columnDefinition = "Decimal(4,2)")
