@@ -10,9 +10,9 @@ public class ErrorMessage {
     public static final String KEY_DEVELOPER_NOT_FOUND = "exception.resource.not.found.developer";
     public static final String DEVELOPER_ALREADY_EXISTED = "Developers already exists";
     public static final String KEY_DEVELOPER_ALREADY_EXISTED = "exception.input.validation.developer.already.exists";
-    public static final String DEVELOPER_NAME_LENGTH_CONSTRAINT = "Skill Name length cannot exceed 255 characters";
+    public static final String DEVELOPER_NAME_LENGTH_CONSTRAINT = "Developer name length cannot exceed 2000 characters";
     public static final String KEY_DEVELOPER_NAME_LENGTH_CONSTRAINT = "exception.input.validation.skill.name.length.over.max.length";
-    public static final String DEVELOPER_DESCRIPTION_LENGTH_CONSTRAINT = "Skill Description length cannot exceed 2000 characters";
+    public static final String DEVELOPER_DESCRIPTION_LENGTH_CONSTRAINT = "Developer description length cannot exceed 2000 characters";
     public static final String KEY_DEVELOPER_DESCRIPTION_LENGTH_CONSTRAINT = "exception.input.validation.skill.description.over.max.length";
     public static final String DEVELOPER_NAME_NULL_OR_BLANK = "Developer Name cannot be null or blank";
     public static final String KEY_DEVELOPER_NAME_NULL_OR_BLANK = "exception.input.validation.developer.name.blank.or.null";

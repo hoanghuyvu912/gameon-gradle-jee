@@ -44,9 +44,9 @@ public class User {
 
     private List<UserRoleAssignment> roles = new ArrayList<>();
 
-    private List<ReceiptEntity> receiptEntityList = new ArrayList<>();
-
-    private List<CommentEntity> commentEntityList = new ArrayList<>();
-
-    private List<RatingEntity> ratingEntityList = new ArrayList<>();
+//    private List<ReceiptEntity> receiptEntityList = new ArrayList<>();
+//
+//    private List<CommentEntity> commentEntityList = new ArrayList<>();
+//
+//    private List<RatingEntity> ratingEntityList = new ArrayList<>();
 }

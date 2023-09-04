@@ -68,12 +68,12 @@ public class UserEntity {
     @OneToMany(orphanRemoval = true, mappedBy = "users", cascade = CascadeType.PERSIST)
     private List<UserRoleAssignment> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<ReceiptEntity> receiptEntityList = new ArrayList<>();
-
-    @OneToMany(orphanRemoval = true, mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<CommentEntity> commentEntityList = new ArrayList<>();
-
-    @OneToMany(orphanRemoval = true, mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<RatingEntity> ratingEntityList = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+//    private List<ReceiptEntity> receiptEntityList = new ArrayList<>();
+//
+//    @OneToMany(orphanRemoval = true, mappedBy = "user", cascade = CascadeType.PERSIST)
+//    private List<CommentEntity> commentEntityList = new ArrayList<>();
+//
+//    @OneToMany(orphanRemoval = true, mappedBy = "user", cascade = CascadeType.PERSIST)
+//    private List<RatingEntity> ratingEntityList = new ArrayList<>();
 }
