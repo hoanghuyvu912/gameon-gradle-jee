@@ -11,7 +11,7 @@ import org.practice.service.model.Comment;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-16T16:33:00+0700",
+    date = "2023-08-31T09:56:12+0700",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
