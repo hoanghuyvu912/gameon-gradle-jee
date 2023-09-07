@@ -2,6 +2,7 @@ package org.practice.security.service.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.practice.entity.Role;
 import org.practice.entity.UserRoleAssignment;
 
 import java.util.List;
@@ -16,15 +17,15 @@ public class JwtResponse {
     private String email;
 
     @ApiModelProperty(example = "ROLE_USER")
-    private List<UserRoleAssignment> role;
+    private List<String> roles;
 
     private String type = "Bearer";
     private boolean active;
 
-    public JwtResponse(String token, String email, List<UserRoleAssignment> role, boolean active) {
+    public JwtResponse(String token, String email, List<String> roles, boolean active) {
         this.token = token;
         this.email = email;
-        this.role = role;
+        this.roles = roles;
         this.active = active;
     }
 }

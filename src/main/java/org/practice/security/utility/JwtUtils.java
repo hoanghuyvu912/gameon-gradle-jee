@@ -9,6 +9,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.commons.collections4.CollectionUtils;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 import org.practice.config.AppConfigService;
+import org.practice.entity.Role;
 import org.practice.entity.UserEntity;
 import org.practice.entity.UserRoleAssignment;
 import org.practice.exception.AuthorizationException;
@@ -26,10 +27,12 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Stateless
 public class JwtUtils {
@@ -57,7 +60,7 @@ public class JwtUtils {
         String secretKey = AppConfigService.getSecretKey();
         String issuer = AppConfigService.getIssuer();
         int liveTime = AppConfigService.getTimeToLive();
-        List<UserRoleAssignment> role = userService.getEntityByEmail(jwtRequest.getEmail()).getRoles();
+        List<String> roles = userService.getEntityByEmail(jwtRequest.getEmail()).getRoles().stream().map(UserRoleAssignment::getRole).map(Enum::name).collect(Collectors.toList());
 
         try {
             Algorithm algorithm = Algorithm.HMAC512(secretKey);
@@ -66,7 +69,7 @@ public class JwtUtils {
                     .withIssuedAt(new Date())
                     .withJWTId(UUID.randomUUID().toString())
                     .withClaim(EMAIL, jwtRequest.getEmail())
-                    .withClaim(ROLE, String.valueOf(role))
+                    .withClaim(ROLE, roles)
                     .withExpiresAt(new Date(System.currentTimeMillis() + liveTime))
                     .sign(algorithm);
         } catch (JWTCreationException | IllegalArgumentException e) {
@@ -96,17 +99,17 @@ public class JwtUtils {
         String email = jwtRequest.getEmail().trim();
         String token = generateToken(jwtRequest);
         UserEntity user = userService.getEntityByEmail(email);
-        List<UserRoleAssignment> role = user.getRoles();
+        List<String> roles = user.getRoles().stream().map(UserRoleAssignment::getRole).map(Enum::name).collect(Collectors.toList());
         boolean active = user.isActive();
 
-        return new JwtResponse(token, email, role, active);
+        return new JwtResponse(token, email, roles, active);
     }
 
-//    public List<UserRoleAssignment> getRoleFromToken(String authorization) {
-//        String token = authorization.substring(BEARER.length()).trim();
-//        DecodedJWT decodedJWT = JWT.decode(token);
-//        return UserRoleAssignment.valueOf(decodedJWT.getClaim(ROLE).asString());
-//    }
+    public List<String> getRoleFromToken(String authorization) {
+        String token = authorization.substring(BEARER.length()).trim();
+        DecodedJWT decodedJWT = JWT.decode(token);
+        return decodedJWT.getClaim(ROLE).asList(String.class);
+    }
 
     public String getEmailFromToken(String authorization) {
         String token = authorization.substring(BEARER.length()).trim();

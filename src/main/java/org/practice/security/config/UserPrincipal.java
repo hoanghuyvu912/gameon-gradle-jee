@@ -1,12 +1,13 @@
 package org.practice.security.config;
 
-import com.axonactive.agileskills.user.entity.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.practice.entity.Role;
 
 import java.security.Principal;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +15,8 @@ import java.security.Principal;
 @Getter
 public class UserPrincipal implements Principal {
     private String email;
-    private RoleEnum role;
+    private List<String> roles;
+//    private List<Role> roles;
 
     @Override
     public String getName() {

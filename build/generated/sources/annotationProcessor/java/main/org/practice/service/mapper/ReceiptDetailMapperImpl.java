@@ -11,7 +11,7 @@ import org.practice.service.model.ReceiptDetails;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-04T20:45:43+0700",
+    date = "2023-09-07T19:19:56+0700",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped

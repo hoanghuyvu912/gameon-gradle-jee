@@ -3,6 +3,7 @@ package org.practice.security.config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
+import org.practice.entity.Role;
 import org.practice.exception.AuthorizationException;
 import org.practice.exception.ErrorMessage;
 import org.practice.exception.ResponseBody;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
+import java.util.List;
 import java.util.UUID;
 
 @Provider
@@ -45,7 +47,6 @@ public class AuthorizationFilter implements ContainerRequestFilter {
         RolesAllowed classRoles = info.getResourceClass().getAnnotation(RolesAllowed.class);
 
         if (methodRoles == null && classRoles == null) {
-
             return;
         }
 
@@ -57,9 +58,11 @@ public class AuthorizationFilter implements ContainerRequestFilter {
             return;
         }
 
-//        List<UserRoleAssignment> role = jwtUtils.get(authHeader);
+
+//        List<Role> roles = jwtUtils.getRoleFromToken(authHeader);
+        List<String> roles = jwtUtils.getRoleFromToken(authHeader);
         String email = jwtUtils.getEmailFromToken(authHeader);
-        SecurityContext sc = new RequestSecurityContext(new UserPrincipal(email));
+        SecurityContext sc = new RequestSecurityContext(new UserPrincipal(email, roles));
 
         String[] localPart = email.split("@");
         ThreadContext.put("mail", localPart[0] + ":" + UUID.randomUUID().toString().replace("-", "").substring(0, 8));

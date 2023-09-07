@@ -6,7 +6,8 @@ import lombok.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import static com.axonactive.agileskills.base.exception.ErrorMessage.*;
+import static org.practice.exception.ErrorMessage.*;
+
 
 @Setter
 @Getter

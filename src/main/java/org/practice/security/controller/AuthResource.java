@@ -31,7 +31,7 @@ public class AuthResource {
     private UserService userService;
 
     @POST
-    @Path("/login")
+    @Path("/signin")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @ApiOperation(value = "Login")
