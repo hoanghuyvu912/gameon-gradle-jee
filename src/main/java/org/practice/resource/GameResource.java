@@ -4,6 +4,7 @@ import org.practice.exception.ResourceNotFoundException;
 import org.practice.service.DeveloperService;
 import org.practice.service.GameService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +28,7 @@ public class GameResource {
     }
 
     @GET
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
     @Path("/with-codes-sold")
     public Response getWithCodesSold() {
         return Response.ok(gameService.getWithCodesSold()).build();
