@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -28,6 +29,7 @@ public class CommentEntity {
     private GameEntity game;
 
     @Column(name = "comment_content", length = 3000)
+    @NotBlank(message = "Comment date cannot be null or blank.")
     private String commentContent;
 
     @CreationTimestamp

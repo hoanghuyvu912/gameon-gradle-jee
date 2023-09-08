@@ -9,6 +9,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class GameEntity {
 
     @Column(name = "game_name", length = 2000)
     @NotBlank
+    @NotNull(message = "Game name cannot be null or blank.")
     private String name;
 
     @Column(name = "thumbnail", length = 2000)
@@ -41,6 +43,7 @@ public class GameEntity {
     private String trailer;
 
     @Column(name = "released_date")
+    @NotNull(message = "Released date cannot be null or blank.")
     private LocalDate releasedDate;
 
     @Column(name = "system_req", length = 5000)
@@ -48,6 +51,7 @@ public class GameEntity {
     private String systemReq;
 
     @Column(name = "price", columnDefinition = "Decimal(4,2)")
+    @NotNull(message = "Price cannot be null or blank.")
     private Double price;
 
     @ManyToOne

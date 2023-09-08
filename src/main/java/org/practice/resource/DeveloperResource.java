@@ -15,8 +15,11 @@ public class DeveloperResource {
     @Inject
     private DeveloperService developerService;
 
+
     @GET
     public Response getAll() {
         return Response.ok(developerService.getAll()).build();
     }
+
+
 }

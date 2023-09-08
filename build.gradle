@@ -48,8 +48,8 @@ tasks.register('deployToWildfly', Exec) {
     description 'Deploy the WAR file to WildFly'
 
     // Set the command to copy the WAR file to WildFly deployments directory'
-    commandLine 'cmd', '/c', 'copy', "\"${buildDir}\\libs\\${project.name}.war\"", "D:\\NonIT_VuHuyHoang\\AgileSkills\\wildfly-26.1.3.Final\\standalone\\deployments\\${project.name}.war\""
-//    commandLine 'cmd', '/c', 'copy', "\"${buildDir}\\libs\\${project.name}.war\"", "C:\\wildfly-26.1.3.Final\\standalone\\deployments\\${project.name}.war\""
+//    commandLine 'cmd', '/c', 'copy', "\"${buildDir}\\libs\\${project.name}.war\"", "D:\\NonIT_VuHuyHoang\\AgileSkills\\wildfly-26.1.3.Final\\standalone\\deployments\\${project.name}.war\""
+    commandLine 'cmd', '/c', 'copy', "\"${buildDir}\\libs\\${project.name}.war\"", "C:\\wildfly-26.1.3.Final\\standalone\\deployments\\${project.name}.war\""
 }
 
 wrapper {
